@@ -34,7 +34,6 @@ watch(selectedUser, () => {
 
 <template>
   <div class="wrapper">
-    {{ selectedUser }}
     <header>
       <nav>
         <button @click="isOpen = true" class="link" :class="{ 'link-active': isOpen }">
