@@ -11,7 +11,8 @@ const form = ref({
   name: '',
   gender: '',
   age: null,
-  isTestPassed: false
+  isTestPassed: false,
+  answers: [],
 })
 
 const number = ref(1)

@@ -3,13 +3,10 @@ import { ref } from 'vue'
 import ResultModal from '../components/ResultModal.vue'
 import EmptyAnswersModal from '../components/EmptyAnswersModal.vue'
 
-const props = defineProps({
-  selectedUser: {
-    required: true,
-  }
-})
-
 const users = defineModel("users", {
+  required: true,
+})
+const selectedUser = defineModel("selectedUser", {
   required: true,
 })
 
@@ -95,11 +92,16 @@ const addResult = () => {
   }, 0)
 
   users.value = users.value.map((item) => {
-    if (item.id !== props.selectedUser.id) return item
+    if (item.id !== selectedUser.value.id) return item
+    selectedUser.value = {
+      ...item,
+      isTestPassed: true,
+      answers: item.answers.concat([result.value])
+    }
     return {
       ...item,
       isTestPassed: true,
-      answers: result.value
+      answers: item.answers.concat([result.value])
     }
   })
   isOpenResult.value = true

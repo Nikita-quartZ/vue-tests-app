@@ -25,7 +25,7 @@ const openTestPage = () => {
 }
 
 watch(selectedUser, () => {
-  if (!selectedUser.value) {
+  if (!selectedUser.value && route.name === 'tests') {
     router.push({ name: 'users' })
     isOpenErrorSelect.value = true
   }
@@ -34,6 +34,7 @@ watch(selectedUser, () => {
 
 <template>
   <div class="wrapper">
+    {{ selectedUser }}
     <header>
       <nav>
         <button @click="isOpen = true" class="link" :class="{ 'link-active': isOpen }">
@@ -61,7 +62,7 @@ watch(selectedUser, () => {
       </select>
     </header>
 
-    <RouterView v-model:users="users" :selectedUser />
+    <RouterView v-model:users="users" v-model:selectedUser="selectedUser" />
   </div>
 </template>
 

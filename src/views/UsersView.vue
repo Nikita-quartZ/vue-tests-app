@@ -37,7 +37,7 @@ const deleteUser = (id) => {
       <div class="card__status">
         {{ user.isTestPassed ? 'Тест пройден' : 'Тест не проходился' }}
         <p v-if="user.isTestPassed">
-          {{ user.answers }} / 10
+          {{ Math.round(user.answers.reduce((a, b) => a + b, 0) / user.answers.length * 100) / 100 }}
         </p>
       </div>
     </div>
